@@ -20,7 +20,6 @@ set :user, "deployer" #this is your username for the server in role: app etc.
 set :use_sudo, false
 set :rails_env, "production"
 
-before 'deploy:update_code', 'uploads:setup'
 before 'deploy:update_code', 'unicorn:stop'
 before 'deploy:update_code', 'resque:stop'
 
