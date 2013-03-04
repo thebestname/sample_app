@@ -1,21 +1,21 @@
 # 2 workers and 1 master
 worker_processes 2
 
-working_directory "/home/deployer/myapp/current"
+working_directory "/home/deployer/sample_app/current"
 
 # Preload our app for more speed
 preload_app true
 
-listen '/home/deployer/myapp/shared/tmp/sockets/unicorn.sock', :backlog => 64
+listen '/home/deployer/sample_app/shared/tmp/sockets/unicorn.sock', :backlog => 64
 
 # Restart any workers that haven't responded in 30 seconds
 timeout 30
 
 # user 'root'
 
-pid '/home/deployer/myapp/shared/pids/unicorn.pid'
-stderr_path "/home/deployer/myapp/shared/tmp/log/unicorn.stderr.log"
-stdout_path "/home/deployer/myapp/shared/tmp/log/unicorn.stdout.log"
+pid '/home/deployer/sample_app/shared/pids/unicorn.pid'
+stderr_path "/home/deployer/sample_app/shared/tmp/log/unicorn.stderr.log"
+stdout_path "/home/deployer/sample_app/shared/tmp/log/unicorn.stdout.log"
 
 # TODO copy on wrtie garbage collection when available
 
@@ -25,7 +25,7 @@ before_fork do |server, worker|
     ActiveRecord::Base.connection.disconnect!
   end
 
-  old_pid = '/home/deployer/myapp/shared/pids/unicorn.pid.oldbin'
+  old_pid = '/home/deployer/sample_app/shared/pids/unicorn.pid.oldbin'
 
   if File.exists?(old_pid) && server.pid != old_pid
     begin
