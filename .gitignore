@@ -16,3 +16,6 @@
 
 # Ignore shared directory
 /shared
+
+# Ignore DS_store files
+.DS_Store
