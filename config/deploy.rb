@@ -11,9 +11,9 @@ set :scm, :git
 set :branch, "master"
 set :deploy_via, :remote_cache
  
-role :app, "ec2-50-17-42-220.compute-1.amazonaws.com"                              # This may be the same as your `Web` server
-role :web, "ec2-50-17-42-220.compute-1.amazonaws.com"                              # This may be the same as your `Web` server
-role :db,  "ec2-50-17-42-220.compute-1.amazonaws.com", :primary => true # This is where Rails migrations will run
+role :app, "ec2-23-22-32-180.compute-1.amazonaws.com"                              # This may be the same as your `Web` server
+role :web, "ec2-23-22-32-180.compute-1.amazonaws.com"                              # This may be the same as your `Web` server
+role :db,  "ec2-23-22-32-180.compute-1.amazonaws.com", :primary => true # This is where Rails migrations will run
 
 set :user, "deployer" #this is your username for the server in role: app etc.
 
@@ -27,8 +27,12 @@ before 'deploy:restart', 'god:start'
 
 namespace :deploy do
   namespace :assets do
+    task :symlink do
+    end
     task :precompile do
-     end
+    end
+    task :clean do
+    end
   end
 end
 
