@@ -28,6 +28,9 @@ before 'deploy:restart', 'god:start'
 namespace :deploy do
   namespace :assets do
     task :symlink do
+      run "mkdir -p #{shared_path}/assets && chmod g+w #{shared_path}/assets"
+      run "rm -rf #{shared_path}/assets"
+      run "ln -nfs #{release_path}/public/assets #{shared_path}"
     end
     task :precompile do
     end
